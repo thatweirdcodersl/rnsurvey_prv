@@ -7,13 +7,18 @@ import {useState} from 'react'
 const Register = ({navigation}) => {
     //style states>>
     const[emailborderstyle,setEmailStyle]= useState('#191a63')
+    const[passwdborderstyle,setPassStyle]= useState('#191a63')
+    const[confirmpasswdborderstyle,setConfPassStyle]= useState('#191a63')
 
     //input states>>
     //#191a63 , #FF0000
     function validateInputs(evt,controllabel){
-        if(controllabel=='emailid'){          
-            if(evt!=undefined){
-                let email_regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        let email_regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        let pwd_regex = ''
+
+        if(evt!=undefined){
+            if(controllabel=='emailid'){          
+             
                 if(email_regex.test(evt.nativeEvent.text)===false){
                     setEmailStyle('#FF0000')
                 }
@@ -22,16 +27,35 @@ const Register = ({navigation}) => {
                 }
                 if(evt.nativeEvent.text===''){
                     setEmailStyle('#191a63')
-
                 }
                 
             }
-          
-        }
         else if(controllabel=='pwd'){
-            
+            //do what is needed for validation - pwd complexity/special character/cap and length
+            if(pwd_regex.test(evt.nativeEvent.text)===false){
+                setPassStyle('#FF0000')
+            }
+            else{
+                setPassStyle('#008000')
+            }
+            if(evt.nativeEvent.text===''){
+                setPassStyle('#191a63')
+            }
+        }
+        else if(controllabel=='cnfpwd'){
+            //validate confirm password
+            if(pwd_regex.test(evt.nativeEvent.text)===false){
+                setConfPassStyle('#FF0000')
+            }
+            else{
+                setConfPassStyle('#008000')
+            }
+            if(evt.nativeEvent.text===''){
+                setConfPassStyle('#191a63')
+            }
         }
     }
+}
     
     return (
         //top panel with image and text >>
@@ -54,16 +78,16 @@ const Register = ({navigation}) => {
     
             <View style={{alignItem:'center',flexDirection:'row',
             marginHorizontal:55,paddingHorizontal:10,paddingVertical:5,
-            borderWidth:2,marginTop:15,borderColor:'#191a63',borderRadius:20}} >
+            borderWidth:2,marginTop:15,borderColor:{passwdborderstyle},borderRadius:20}} >
                 <Icon name='lock' color="#191a63" size={24} />
-                <TextInput style={{paddingHorizontal:10}} placeholder='Enter Password' secureTextEntry={true}/>
+                <TextInput style={{paddingHorizontal:10}} placeholder='Enter Password' onChange={e=>validateInputs(e,'pwd')} secureTextEntry={true}/>
             </View>
 
             <View style={{alignItem:'center',flexDirection:'row',
             marginHorizontal:55,paddingHorizontal:10,paddingVertical:5,
-            borderWidth:2,marginTop:15,borderColor:'#191a63',borderRadius:20}} >
+            borderWidth:2,marginTop:15,borderColor:{confirmpasswdborderstyle},borderRadius:20}} >
                 <Icon name='lock' color="#191a63" size={24} />
-                <TextInput style={{paddingHorizontal:10}} placeholder='Confirm Password' secureTextEntry={true}/>
+                <TextInput style={{paddingHorizontal:10}} placeholder='Confirm Password' onChange={e=>validateInputs(e,'cnfpwd')} secureTextEntry={true}/>
             </View>
 
              {/*Register button*/}
