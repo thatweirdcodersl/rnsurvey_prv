@@ -6,16 +6,19 @@ import Icon from '@expo/vector-icons/AntDesign';
 import Toast from 'react-native-simple-toast';
 
 
-//return login component to caller/importer of Login >>
-const Login = ({ navigation }) => {
 
+
+const Login = ({ navigation }) => {
+    //constants with usestate>>
     const[Email,setEmail] = useState();
     
-  
+    //login method - ToDo: implement DB connector to run a query against a login table object and return JSON
+    //for record against email ID for presence of registration info
     function doLogin(prop){
       console.log(prop)
       navigation.navigate('SurveyView',{id:'test@gmail.com',role:'admin'})
       Toast.show('Logged in...');
+      
     }
 
    

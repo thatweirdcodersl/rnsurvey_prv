@@ -43,3 +43,20 @@ export const DATA = [
     },
     
   ];
+
+  export const SURVEYSTYLE =[
+  {
+    question: 'enter the question here',
+    questionstyle: 'radiobutton_4nums',
+    //options
+    opt1:'declare whatever',
+    opt2:'feel whatever',
+    opt3:'excuse me',
+    opt4:'I am just another dude'
+  },
+  {
+    question: 'enter the random question',
+    questionstyle: 'textbody_long',
+  },
+
+  ];
