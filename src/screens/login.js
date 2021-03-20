@@ -14,7 +14,7 @@ const Login = ({ navigation }) => {
   
     function doLogin(prop){
       console.log(prop)
-      navigation.navigate('SurveyView',{name:'test',role:'admin'})
+      navigation.navigate('SurveyView',{id:'test@gmail.com',role:'admin'})
       Toast.show('Logged in...');
     }
 

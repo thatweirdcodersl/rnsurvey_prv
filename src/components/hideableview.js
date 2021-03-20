@@ -11,7 +11,7 @@ const HideableView = (props) =>{
         
            (props.hide)?null:
         <View style={props.viewstyle}>
-          <Button title={props.buttontitle} onPress={props.pressevt}/>
+          <Button title={props.buttontitle} onPress={props.pressevt} style={{border}}/>
         </View>
     )
 };

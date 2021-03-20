@@ -5,66 +5,25 @@ import {useState} from 'react';
 import {useNavigation} from 'react';
 import { Card,Title,Button, Paragraph } from 'react-native-paper';
 import HideableView from '../components/hideableview';
+import * as Constants from '../components/dummydata';
+
 
 const SurveyView = ({navigation}) => {
     
-    const _nameprops = navigation.getParam('name');
+    const _nameprops = navigation.getParam('id');
     const _roleprops = navigation.getParam('role');
     console.log(_roleprops)
 
     function selected(param){
+        //if user has already answered the survey>>
+        //return a message
+        
         console.log(param)
         
     }
     
-    const DATA = [
-        {
-          id: "1",
-          title: "Old age and mobility",
-          description:"newly added survey",
-          body:"How does old age influence cross-border mobility",
-          img_loc:"https://thumbs.dreamstime.com/b/unhappy-disappointed-customer-giving-low-rating-negative-feedback-survey-unhappy-disappointed-customer-giving-low-131140535.jpg",
-        },
-        {
-          id: "2",
-          title: "Generic survey",
-          description:"newly added survey",
-          body:"Did Covid really cause a business disruption",
-          img_loc:"https://www.cansolveckd.ca/wp-content/uploads/2018/05/pe-survey-highlights.jpg",
-        },
-        {
-          id: "3",
-          title: "Generic survey",
-          description:"newly added survey",
-          body:"Wellness in the coming days",
-          img_loc:"https://www.cansolveckd.ca/wp-content/uploads/2018/05/pe-survey-highlights.jpg",
-        },
-        {
-          id: "4",
-          title: "Generic survey",
-          description:"newly added survey",
-          body:"How important is mental wellness during the Pandemic?",
-          img_loc:"https://www.cansolveckd.ca/wp-content/uploads/2018/05/pe-survey-highlights.jpg",
-        },
-        {
-          id: "5",
-          title: "Generic survey",
-          description:"newly added survey",
-          body:"How funny is Indian Television?",
-          img_loc:"https://www.cansolveckd.ca/wp-content/uploads/2018/05/pe-survey-highlights.jpg",
-        },
-        {
-          id: "6",
-          title: "Generic survey",
-          description:"newly added survey",
-          body:"Should EVs be incentivised?",
-          img_loc:"https://www.cansolveckd.ca/wp-content/uploads/2018/05/pe-survey-highlights.jpg",
-        },
-        
-      ];
 
-      const Item = ({ item, onPress }) => (
-        //onPress={onPress}
+      const Item = ({ item }) => (
         <Card>
         <Card.Title title={item.title} subtitle={item.description} />
         <Card.Content>
@@ -83,7 +42,6 @@ const SurveyView = ({navigation}) => {
         return (
           <Item
             item={item}
-            onPress={() =>selected(item) }
           />
         );
       };
@@ -95,19 +53,19 @@ const SurveyView = ({navigation}) => {
         <View style={{ flex: 9, justifyContent: 'center',  }}>
         <SafeAreaView style={styles.container}>
         <FlatList
-          data={DATA}
+          data={Constants.DATA}
           renderItem={renderItem}
           keyExtractor={(item) => item.id}
         />
-      </SafeAreaView>
-        </View>
-
-        <HideableView buttontitle='Add survey' hide={_roleprops!='admin'} viewstyle={{ flex: 1, backgroundColor: '#FFF', alignItems: 'center', justifyContent: 'center',}} pressevt={()=>console.log('pressed')}/>
-        
-
+        </SafeAreaView>
       </View>
+
+      <HideableView buttontitle='Add survey' hide={_roleprops!='admin'} 
+      viewstyle={styles.footer} 
+      pressevt={()=>console.log('pressed')}/>
         
-      
+      </View>
+          
       )
 }
 const styles = StyleSheet.create({
@@ -123,7 +81,11 @@ const styles = StyleSheet.create({
     title: {
       fontSize: 32,
     },
-    footer:{
+    footer:{ 
+      flex: 1, 
+      backgroundColor: '#FFF', 
+      alignItems: 'center', 
+      justifyContent: 'center',
 
     },
   });
